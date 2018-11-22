@@ -1,0 +1,17 @@
+plugins {
+    id 'war'
+}
+
+group 'org.certificatic'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'javax:javaee-api:7.0'
+    testCompile 'junit:junit:4.12'
+}
