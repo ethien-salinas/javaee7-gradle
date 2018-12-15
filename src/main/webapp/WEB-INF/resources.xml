@@ -1,0 +1,4 @@
+<Resource id="derbyDataSource" type="javax.sql.DataSource">
+    # Derby in memory DB
+    jdbcUrl = jdbc:derby:memory:derbyDB;create=true
+</Resource>
