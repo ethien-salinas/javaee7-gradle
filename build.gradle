@@ -1,6 +1,14 @@
-plugins {
-    id 'war'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-cargo-plugin:2.4'
+    }
 }
+
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.cargo'
 
 group 'org.certificatic'
 version '1.0-SNAPSHOT'
@@ -12,6 +20,28 @@ repositories {
 }
 
 dependencies {
+    // Java EE 7
     compileOnly 'javax:javaee-api:7.0'
+    // Derby DB
+    compile 'org.apache.derby:derby:10.14.2.0'
+    // JAXB
+    compile 'com.sun.xml.bind:jaxb-core:2.2.11'
+    compile 'com.sun.xml.bind:jaxb-impl:2.2.11'
+    compile 'javax.xml.bind:jaxb-api:2.2.11'
+    compile 'javax.activation:activation:1.1.1'
+    // Logging
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.codehaus.groovy:groovy:2.5.4'
+    // JUnit
     testCompile 'junit:junit:4.12'
+}
+
+cargo {
+    containerId = 'tomee7x'
+    port = 8080
+    local {
+        homeDir = file('/Users/ethien.salinas/Downloads/apache-tomee-plume-7.1.0')
+        outputFile = file('build/output.log')
+    }
 }
